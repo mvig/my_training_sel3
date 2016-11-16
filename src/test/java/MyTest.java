@@ -18,15 +18,13 @@ public class MyTest extends TestBase {
         driver.get("http://www.google.com");
         driver.findElement(By.name("q")).sendKeys("test");
         driver.findElement(By.name("btnG")).click();
-        wait.until(titleIs("test - Поиск в Google"));
 
+        wait.until(titleIs("test - Поиск в Google"));
         List<WebElement> list = driver.findElements(By.className("s"));
         assertThat(9, equalTo(list.size()));
 
 
     }
-
-
 
 }
 

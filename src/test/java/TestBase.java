@@ -15,6 +15,7 @@ public class TestBase {
 
     @Before
     public void start() {
+        //driver = new ChromeDriver();
         driver = new FirefoxDriver();
         System.out.println(((HasCapabilities) driver).getCapabilities());
         wait = new WebDriverWait(driver, 10);
