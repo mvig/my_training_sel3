@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f844829-3c9f-4e87-b823-dd81d53d44b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/TestBase.java" afterPath="$PROJECT_DIR$/src/test/java/TestBase.java" />
     </list>
     <ignored path="my_training_sel3.iws" />
@@ -79,8 +77,8 @@
       <file leaf-file-name="TestBase.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/TestBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="26" column="90" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="92" />
+            <state relative-caret-position="357">
+              <caret line="31" column="88" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="88" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -998,8 +996,8 @@
     <history-entry file="TestLitecart - 2016.11.22 at 21h 04m 05s.xml">
       <configuration name="TestLitecart" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestLitecart_testAdmin - 2016.11.16 at 23h 00m 51s.xml">
-      <configuration name="TestLitecart.testAdmin" configurationId="JUnit" />
+    <history-entry file="TestLitecart - 2016.11.22 at 21h 15m 22s.xml">
+      <configuration name="TestLitecart" configurationId="JUnit" />
     </history-entry>
     <history-entry file="TestLitecart_testAdmin - 2016.11.16 at 23h 04m 56s.xml">
       <configuration name="TestLitecart.testAdmin" configurationId="JUnit" />
@@ -1229,8 +1227,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/TestBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="26" column="90" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="92" />
+        <state relative-caret-position="357">
+          <caret line="31" column="88" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="88" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
