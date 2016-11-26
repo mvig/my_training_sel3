@@ -11,14 +11,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 public class TestLitecart extends TestBase {
     @Test
     public void testAdmin() {
-        driver.navigate().to("http://localhost/litecart/admin/login.php");
-        driver.findElement(By.name("username")).click();
-        driver.findElement(By.name("username")).clear();
-        driver.findElement(By.name("username")).sendKeys("admin");
-        driver.findElement(By.name("password")).click();
-        driver.findElement(By.name("password")).clear();
-        driver.findElement(By.name("password")).sendKeys("admin");
-        driver.findElement(By.name("login")).click();
+
+        doLiginByAdmin();
 
         wait.until(visibilityOfElementLocated(By.id("box-apps-menu")));
         assertThat(driver.getCurrentUrl().toString(), equalTo("http://localhost/litecart/admin/"));
@@ -29,4 +23,5 @@ public class TestLitecart extends TestBase {
         assertThat(driver.getCurrentUrl().toString(), equalTo("http://localhost/litecart/admin/login.php"));
 
     }
+
 }
