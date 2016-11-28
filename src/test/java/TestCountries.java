@@ -2,6 +2,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.Arrays;
 import java.util.List;
@@ -90,5 +91,51 @@ public class TestCountries extends TestBase {
             }
         }
     }
-}
 
+    @Test
+    public void geoZoneSortCountriesTest() throws InterruptedException {
+        doLiginByAdmin();
+        driver.navigate().to("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones");
+        wait.until(visibilityOfElementLocated(By.id("content")));
+        sleep(5000);
+        List<WebElement> geoZonesExist = driver.findElements(By.xpath("//table[@class='dataTable']//td[3]"));
+        System.out.println(geoZonesExist.size());
+        String[] geoZonesCountry = new String[geoZonesExist.size()];
+        for (int i = 0; i < geoZonesExist.size(); i++)
+            geoZonesCountry[i] = "";
+
+        int i = 0;
+        for (WebElement geoZone : geoZonesExist) {
+            geoZonesCountry[i] = geoZone.getText();
+            i++;
+        }
+        for (String z : geoZonesCountry) {
+            if (!(z.isEmpty())) {
+                System.out.println("Проверяем сортировку стран в geo зоне для: " + z);
+                driver.findElement(By.linkText(z)).click();
+                sleep(1000);
+
+                List<WebElement> selectCountry = driver.findElements(By.xpath("//*[@id=\"table-zones\"]/tbody//td[3]/select "));
+
+                int zonesCount = (selectCountry.size());
+                String[] unSotrArray = new String[zonesCount];
+                for (int l = 0; l < zonesCount; l++) {
+                    WebElement selectElem = selectCountry.get(l);
+                    Select select = new Select(selectElem);
+                    unSotrArray[l] = select.getFirstSelectedOption().getText();
+                    System.out.println(unSotrArray[l]);
+                }
+                String[] sotrArray = new String[unSotrArray.length];
+                System.arraycopy(unSotrArray, 0, sotrArray, 0, unSotrArray.length);
+
+
+                Arrays.sort(sotrArray);
+
+                Assert.assertArrayEquals(sotrArray, unSotrArray);
+                driver.navigate().back();
+                sleep(1000);
+            }
+        }
+
+    }
+}
