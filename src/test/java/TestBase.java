@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.UUID;
+
 /**
  * Created by Tirex on 16.11.2016.
  */
@@ -70,6 +72,27 @@ public class TestBase {
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+    protected Object gRandomName() {
+
+        UUID id = UUID.randomUUID();
+        String f1 = id.toString().replace("-", "");
+        System.out.println(f1);
+        char[] symbols = new char[f1.length()];
+        int i = 0;
+        for (char letter : f1.toCharArray()) {
+            symbols[i] = letter;
+            i++;
+        }
+
+        int c=8;
+        String l = new String();
+        for (i = 0; i <= c; i++) {
+            l = l + String.valueOf(symbols[i]);
+        }
+
+        return l;
+
     }
 
 }
