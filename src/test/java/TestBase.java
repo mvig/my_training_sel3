@@ -1,9 +1,6 @@
 import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.By;
-import org.openqa.selenium.HasCapabilities;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -94,5 +91,12 @@ public class TestBase {
         return l;
 
     }
+    public void setDatepicker(WebDriver driver, String cssSelector, String date) {
+        new WebDriverWait(driver, 30000).until(
+                (WebDriver d) -> d.findElement(By.cssSelector(cssSelector)).isDisplayed());
+        JavascriptExecutor.class.cast(driver).executeScript(
+                String.format("$('%s').datepicker('setDate', '%s')", cssSelector, date));
+    }
+
 
 }
