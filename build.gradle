@@ -12,14 +12,18 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile 'org.seleniumhq.selenium:selenium-java:3.0.1'
+    compile 'net.lightbody.bmp:browsermob-legacy:2.1.2'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
 
 }
 
 
 test {
+    useTestNG()
     //maxParallelForks = 10
 }
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
+
