@@ -1,3 +1,5 @@
+package tests;
+
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -15,12 +17,12 @@ public class MyTest extends TestBase {
 
     @Test
     public void myFirstTest() {
-        driver.get("http://www.google.com");
-        driver.findElement(By.name("q")).sendKeys("test");
-        driver.findElement(By.name("btnG")).click();
+        getApp().driver.get("http://www.google.com");
+        getApp().driver.findElement(By.name("q")).sendKeys("test");
+        getApp().driver.findElement(By.name("btnG")).click();
 
-        wait.until(titleIs("test - Поиск в Google"));
-        List<WebElement> list = driver.findElements(By.className("s"));
+        getApp().wait.until(titleIs("test - Поиск в Google"));
+        List<WebElement> list = getApp().driver.findElements(By.className("s"));
         assertThat(9, equalTo(list.size()));
 
 

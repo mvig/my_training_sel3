@@ -1,3 +1,5 @@
+package tests;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -17,10 +19,10 @@ public class TestCountries extends TestBase {
 
     @Test
     public void countriesSortTest() {
-        doLiginByAdmin();
-        driver.navigate().to("http://localhost/litecart/admin/?app=countries&doc=countries");
-        wait.until(visibilityOfElementLocated(By.id("content")));
-        List<WebElement> listCountries = driver.findElements(By.xpath("//div/div/div/table/tbody/tr/td[3]/form/table/tbody//td[5]/a"));
+        app.getAdminPageHelper().doLiginByAdmin();
+        getApp().driver.navigate().to("http://localhost/litecart/admin/?app=countries&doc=countries");
+        getApp().wait.until(visibilityOfElementLocated(By.id("content")));
+        List<WebElement> listCountries = getApp().driver.findElements(By.xpath("//div/div/div/table/tbody/tr/td[3]/form/table/tbody//td[5]/a"));
         int countries = listCountries.size();
         System.out.println("Стран в списке: " + countries);
         String[] unSotrArray = new String[countries];
@@ -42,11 +44,11 @@ public class TestCountries extends TestBase {
     @Test
     public void zoneCountriesSortTest() throws InterruptedException {
 
-        doLiginByAdmin();
-        driver.navigate().to("http://localhost/litecart/admin/?app=countries&doc=countries");
-        wait.until(visibilityOfElementLocated(By.id("content")));
+        app.getAdminPageHelper().doLiginByAdmin();
+        getApp().driver.navigate().to("http://localhost/litecart/admin/?app=countries&doc=countries");
+        getApp().wait.until(visibilityOfElementLocated(By.id("content")));
 
-        List<WebElement> zones = driver.findElements(By.cssSelector("tr.row"));
+        List<WebElement> zones = getApp().driver.findElements(By.cssSelector("tr.row"));
 
         String[] countryWithZones = new String[zones.size()];
         for (int i = 0; i < zones.size(); i++)
@@ -65,10 +67,10 @@ public class TestCountries extends TestBase {
         for (String z : countryWithZones) {
             if (!(z.isEmpty())) {
                 System.out.println("Проверяем сортировку стран в зонах для: " + z);
-                driver.findElement(By.linkText(z)).click();
+                getApp().driver.findElement(By.linkText(z)).click();
                 sleep(1000);
 
-                List<WebElement> zonesSelectCountry = driver.findElements(By.cssSelector("table#table-zones tr + tr td:nth-of-type(3) input"));
+                List<WebElement> zonesSelectCountry = getApp().driver.findElements(By.cssSelector("table#table-zones tr + tr td:nth-of-type(3) input"));
                 int zonesCount = (zonesSelectCountry.size() - 1);
                 String[] unSotrArray = new String[zonesCount];
                 System.out.println(zonesCount);
@@ -86,7 +88,7 @@ public class TestCountries extends TestBase {
                 Arrays.sort(sotrArray);
 
                 Assert.assertArrayEquals(sotrArray, unSotrArray);
-                driver.navigate().back();
+                getApp().driver.navigate().back();
                 sleep(1000);
             }
         }
@@ -94,11 +96,11 @@ public class TestCountries extends TestBase {
 
     @Test
     public void geoZoneSortCountriesTest() throws InterruptedException {
-        doLiginByAdmin();
-        driver.navigate().to("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones");
-        wait.until(visibilityOfElementLocated(By.id("content")));
+        app.getAdminPageHelper().doLiginByAdmin();
+        getApp().driver.navigate().to("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones");
+        getApp().wait.until(visibilityOfElementLocated(By.id("content")));
         sleep(5000);
-        List<WebElement> geoZonesExist = driver.findElements(By.xpath("//table[@class='dataTable']//td[3]"));
+        List<WebElement> geoZonesExist = getApp().driver.findElements(By.xpath("//table[@class='dataTable']//td[3]"));
         System.out.println(geoZonesExist.size());
         String[] geoZonesCountry = new String[geoZonesExist.size()];
         for (int i = 0; i < geoZonesExist.size(); i++)
@@ -112,10 +114,10 @@ public class TestCountries extends TestBase {
         for (String z : geoZonesCountry) {
             if (!(z.isEmpty())) {
                 System.out.println("Проверяем сортировку стран в geo зоне для: " + z);
-                driver.findElement(By.linkText(z)).click();
+                getApp().driver.findElement(By.linkText(z)).click();
                 sleep(1000);
 
-                List<WebElement> selectCountry = driver.findElements(By.xpath("//*[@id=\"table-zones\"]/tbody//td[3]/select "));
+                List<WebElement> selectCountry = getApp().driver.findElements(By.xpath("//*[@id=\"table-zones\"]/tbody//td[3]/select "));
 
                 int zonesCount = (selectCountry.size());
                 String[] unSotrArray = new String[zonesCount];
@@ -132,7 +134,7 @@ public class TestCountries extends TestBase {
                 Arrays.sort(sotrArray);
 
                 Assert.assertArrayEquals(sotrArray, unSotrArray);
-                driver.navigate().back();
+                getApp().driver.navigate().back();
                 sleep(1000);
             }
         }

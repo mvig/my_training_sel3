@@ -1,5 +1,5 @@
-import org.junit.After;
-import org.junit.Before;
+package appmanager;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -7,15 +7,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.UUID;
 
 /**
- * Created by Tirex on 16.11.2016.
+ * Created by Tirex on 21.12.2016.
  */
-public class TestBase {
-
+public class ApplicationMenager {
     public WebDriver driver;
     public WebDriverWait wait;
+    public CardPageHelper cardPageHelper;
+    public AdminPageHelper adminPageHelper;
+    public MainPageHelper mainPageHelper;
 
-    @Before
-    public void setUp() throws Exception  {
+    public void init() throws InterruptedException {
         driver = new ChromeDriver();
         //driver = new FirefoxDriver();
 
@@ -39,38 +40,17 @@ public class TestBase {
 
         System.out.println(((HasCapabilities) driver).getCapabilities());
         wait = new WebDriverWait(driver, 10);
-
-
+        mainPageHelper = new MainPageHelper(driver, wait);
+        adminPageHelper = new AdminPageHelper(driver, wait);
+        cardPageHelper = new CardPageHelper(driver, wait);
     }
 
-    @After
-    public void tearDown(){
+    public void stop() {
         driver.quit();
         driver = null;
     }
 
-
-    protected void doLiginByAdmin() {
-        driver.navigate().to("http://localhost/litecart/admin/login.php");
-        driver.findElement(By.name("username")).click();
-        driver.findElement(By.name("username")).clear();
-        driver.findElement(By.name("username")).sendKeys("admin");
-        driver.findElement(By.name("password")).click();
-        driver.findElement(By.name("password")).clear();
-        driver.findElement(By.name("password")).sendKeys("admin");
-        driver.findElement(By.name("login")).click();
-
-    }
-
-    protected boolean isElementPresent(By locator) {
-        try {
-            driver.findElement(locator);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
-    protected Object gRandomName() {
+    public Object gRandomName() {
 
         UUID id = UUID.randomUUID();
         String f1 = id.toString().replace("-", "");
@@ -91,12 +71,31 @@ public class TestBase {
         return l;
 
     }
+
     public void setDatepicker(WebDriver driver, String cssSelector, String date) {
         new WebDriverWait(driver, 30000).until(
                 (WebDriver d) -> d.findElement(By.cssSelector(cssSelector)).isDisplayed());
         JavascriptExecutor.class.cast(driver).executeScript(
                 String.format("$('%s').datepicker('setDate', '%s')", cssSelector, date));
     }
+    public boolean isElementPresent(By locator) {
+        try {
+            driver.findElement(locator);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
 
+    public MainPageHelper getMainPageHelper() {
+        return mainPageHelper;
+    }
 
+    public AdminPageHelper getAdminPageHelper() {
+        return adminPageHelper;
+    }
+
+    public CardPageHelper getCardPageHelper() {
+        return cardPageHelper;
+    }
 }

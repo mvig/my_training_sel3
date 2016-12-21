@@ -1,3 +1,5 @@
+package tests;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -5,19 +7,16 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
-
 /**
  * Created by Tirex on 27.11.2016.
  */
 public class TestStickers extends TestBase {
     @Test
     public void stickerExistTest() {
-        driver.navigate().to("http://localhost/litecart/en/");
-        wait.until(visibilityOfElementLocated(By.className("content")));
+        app.getMainPageHelper().gotoMainPage();
 
 
-        List<WebElement> list = driver.findElements(By.className("image-wrapper"));
+        List<WebElement> list = getApp().driver.findElements(By.className("image-wrapper"));
         System.out.println("Картинок товара: " + list.size());
 
         for (WebElement item : list) {
